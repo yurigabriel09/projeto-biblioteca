@@ -1,0 +1,1 @@
+# aqui ficará a função para consultar qualquer livro de maneira individual, qualquer autor de maneira individual, ou consultar todos os livros de uma categoria especifica.

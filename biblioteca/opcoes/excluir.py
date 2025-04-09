@@ -1,0 +1,1 @@
+# aqui, excluiremos um livro que não queremos mais em estoque.
