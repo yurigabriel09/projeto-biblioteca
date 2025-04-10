@@ -2,13 +2,18 @@
 
 from database import SessionLocal, Livro
 
-def Cadastrar_Livro():
+def cadastrarLivro():
     db = SessionLocal()  # variável para criar conexões com o banco de dados (fazer consultas, etc.)
 
     try:
+        print('Se quiser voltar ao menu principal, digite 0.')
         id = int(input('Digite o ID do livro: '))
-        while id < 1:
-            print('[ERRO]. O ID não pode ser 0 ou negativo. Digite um número válido.')
+
+        if id == 0:
+            return id
+        
+        while id < 0:
+            print('[ERRO]. O ID não pode ser negativo. Digite um número válido.')
             id = int(input('Digite o ID do livro: '))
 
         titulo = input('Digite o título do livro: ')
