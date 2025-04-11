@@ -2,8 +2,10 @@
 
 from database import SessionLocal, Livro
 
+
 def consultarLivro():
-    print('\nDigite 0 se quiser voltar ao menu principal.')
+
+    print('Digite 0 se quiser voltar ao menu principal.')
     nomeLivro = input('Digite o nome do livro que deseja consultar: ')
     if nomeLivro == '0':
         return nomeLivro
@@ -11,12 +13,8 @@ def consultarLivro():
         buscarLivro(nomeLivro)
 
 
-def consultarAutor():
-    nomeAutor = input('Digite o nome do autor que deseja consultar: ')
-    buscarAutor(nomeAutor)
-
-
 def buscarLivro(livro):
+
     db = SessionLocal()
 
     try:
@@ -42,6 +40,16 @@ def buscarLivro(livro):
         print(f'[ERRO]. {e}')
 
 
+def consultarAutor():
+
+    print('Digite 0 se quiser voltar ao menu principal.')
+    nomeAutor = input('Digite o nome do autor que deseja consultar: ')
+    if nomeAutor == '0':
+        return nomeAutor
+    else:
+        buscarAutor(nomeAutor)
+    
+    
 def buscarAutor(autor):
     db = SessionLocal()
 
@@ -49,17 +57,42 @@ def buscarAutor(autor):
         autoresEncontrados = db.query(Livro).filter(Livro.autor.ilike(f'%{autor}%')).all()
 
         if autoresEncontrados:
-            print('Aqui estão os autores encontrados!')
+            print('\nAqui estão os autores encontrados!\n')
             for autor in autoresEncontrados:
                 print(f'{autor.autor}, {autor.titulo}')
             
             # perguntar se ele quer pegar algum livro do autor emprestado
 
         else:
-            print('Não foi encontrado nenhum autor(a) com esse nome!')
+            print('\nNão foi encontrado nenhum autor(a) com esse nome!')
         
         db.close()
 
     except Exception as e:
         db.rollback()
         print(f'[ERRO]. {e}')
+
+
+def consultarCategoria():
+
+    print('Essas são as categorias disponíveis:')
+    print(f'[ Biografia, Fantasia, Poesia, Romance, Suspense ].')
+    print('\nDigite 0 se quiser voltar ao menu.')
+
+    categoria = input('Digite a categoria que você quer consultar: ').capitalize()
+    if categoria == '0':
+        return categoria
+        
+    categorias = ['Biografia', 'Fantasia', 'Poesia', 'Romance', 'Suspense']
+
+    while categoria not in categorias:
+        categoria = input('\nCategoria inválida! Digite novamente ou digite 0 pra voltar ao menu: ').capitalize()
+
+        if categoria == '0':
+            return categoria
+    else:
+        buscarCategoria(categoria)
+
+
+def buscarCategoria(categoria):
+    print(f'\nFuncionando! Aqui estão os livros da categoria {categoria}:')

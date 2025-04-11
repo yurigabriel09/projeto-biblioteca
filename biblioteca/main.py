@@ -1,8 +1,9 @@
 # arquivo principal para execução do programa
 # para executá-lo, escreva 'py main.py' no terminal do vs code.
 
+import os
 from opcoes.cadastrar import cadastrarLivro
-from opcoes.consultar import consultarLivro, consultarAutor
+from opcoes.consultar import consultarLivro, consultarAutor, consultarCategoria
 
 def main():
     while True:
@@ -21,21 +22,32 @@ def main():
                     print('[ERRO]. Digite uma opção válida!\n')
                             
             if num == 1:
+                os.system('cls')
                 resposta = cadastrarLivro()
                 if resposta == 0:
                     main()
 
             elif num == 2:
+                os.system('cls')
                 resposta = consultarLivro()
                 if resposta == '0':
                     main()
 
             elif num == 3:
-                consultarAutor()
-                if resposta == 0:
+                os.system('cls')
+                resposta = consultarAutor()
+                if resposta == '0':
+                    main()
+            
+            elif num == 4:
+                os.system('cls')
+                resposta = consultarCategoria()
+                if resposta == '0':
                     main()
 
             elif num == 8:
+                os.system('cls')
+                print('Programa encerrado!')
                 return None
             
             elif num > 3 and num < 8:

@@ -1,6 +1,7 @@
 # FUNÇÃO PARA CADASTRAR LIVROS
 
 from database import SessionLocal, Livro
+from opcoes.verificacoes.id import buscarID
 
 def cadastrarLivro():
     db = SessionLocal()  # variável para criar conexões com o banco de dados (fazer consultas, etc.)
@@ -11,6 +12,12 @@ def cadastrarLivro():
 
         if id == 0:
             return id
+        
+        idsCadastrados = buscarID()
+
+        while id in idsCadastrados:
+            print('\nEsse ID já foi cadastrado! Verifique e tente novamente.')
+            id = int(input('Digite o ID do livro: \n'))
         
         while id < 0:
             print('[ERRO]. O ID não pode ser negativo. Digite um número válido.')
