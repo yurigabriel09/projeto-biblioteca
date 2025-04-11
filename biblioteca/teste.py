@@ -13,3 +13,22 @@ for livro in livros:
 db.close()
 
 buscarID()
+
+
+def excluirTeste():
+    db = SessionLocal()
+
+    try:
+        db.query(Livro).filter(Livro.categoria != 'Fantasia').delete()
+        livros = db.query(Livro).all()
+
+        for livro in livros:
+            print(f'{livro.id}, {livro.titulo}')
+
+    except Exception as e:
+        print(f'[ERRO]. {e}')
+
+    db.commit()
+    db.close()
+
+# excluirTeste()

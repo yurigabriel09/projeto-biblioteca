@@ -49,7 +49,7 @@ def consultarAutor():
     else:
         buscarAutor(nomeAutor)
     
-    
+
 def buscarAutor(autor):
     db = SessionLocal()
 
@@ -95,4 +95,17 @@ def consultarCategoria():
 
 
 def buscarCategoria(categoria):
-    print(f'\nFuncionando! Aqui estão os livros da categoria {categoria}:')
+    db = SessionLocal()
+
+    try:
+        print(f'\nAqui estão os livros da categoria {categoria}:\n')
+        livros = db.query(Livro).filter(Livro.categoria == categoria).all()
+
+        if livros:
+            for livro in livros:
+                print(f'{livro.titulo}, {livro.autor}. Quantidade em estoque: {livro.qtd_estoque}')
+        else:
+            print(f'Ainda não temos nenhum livro cadastrado na categoria {categoria}!')
+
+    except Exception as e:
+        print(f'[ERRO]. {e}')

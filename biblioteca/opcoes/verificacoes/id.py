@@ -8,6 +8,7 @@ def buscarID():
     try:
         idsOBJ = db.query(Livro).filter(Livro.id).all()
 
+
         idsList = []
         for id in idsOBJ:
             idsList.append(id.id)

@@ -1,1 +1,1 @@
-# aqui, editaremos informações de um livro (nome do livro, autor, data de publicação)
+# aqui, editaremos informações de um livro (nome do livro, autor, data de publicação, etc.)

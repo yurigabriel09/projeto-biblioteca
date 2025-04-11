@@ -4,6 +4,7 @@
 import os
 from opcoes.cadastrar import cadastrarLivro
 from opcoes.consultar import consultarLivro, consultarAutor, consultarCategoria
+from opcoes.disponibilidade import verificarEstoque
 
 def main():
     while True:
@@ -42,6 +43,12 @@ def main():
             elif num == 4:
                 os.system('cls')
                 resposta = consultarCategoria()
+                if resposta == '0':
+                    main()
+
+            elif num == 5:
+                os.system('cls')
+                resposta = verificarEstoque()
                 if resposta == '0':
                     main()
 
